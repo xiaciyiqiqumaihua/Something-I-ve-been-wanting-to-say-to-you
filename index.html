@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>我的音乐图文页</title>
+    <title>致 · 盛夏未说的秘密</title>
     <style>
-        /* 这里是CSS样式，你可以自由修改颜色、大小等来美化页面 */
+        /* ========== 配色方案：暮色告白 · 遗憾温柔 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -14,7 +14,7 @@
 
         body {
             font-family: system-ui, 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(145deg, #f9f3e6 0%, #fff5e8 100%);
+            background: linear-gradient(145deg, #2b2d42 0%, #1e1e2f 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,49 +25,49 @@
         .card {
             max-width: 600px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(0px);
+            background: rgba(30, 25, 45, 0.75);
+            backdrop-filter: blur(12px);
             border-radius: 2.5rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(210, 180, 255, 0.15);
             overflow: hidden;
             padding: 2rem 1.8rem 2.2rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: 600;
-            background: linear-gradient(135deg, #c06c3c, #a0522d);
+            background: linear-gradient(135deg, #f3b0c2, #c084fc);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.2px;
         }
 
         .sub {
-            color: #86644b;
-            border-left: 3px solid #e6b17e;
+            color: #b9a9dd;
+            border-left: 3px solid #e0aaff;
             padding-left: 1rem;
             margin-bottom: 2rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 400;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         .text-content {
-            background: #fefaf5;
-            padding: 1.5rem 1.4rem;
+            background: rgba(20, 15, 35, 0.7);
+            padding: 1.6rem 1.4rem;
             border-radius: 1.75rem;
             margin-bottom: 2rem;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
-            border: 1px solid #fff3e9;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(200, 170, 255, 0.25);
         }
 
         .text-content p {
             font-size: 1rem;
-            line-height: 1.55;
-            color: #2e241f;
+            line-height: 1.65;
+            color: #f2eaff;
             margin-bottom: 1rem;
         }
 
@@ -76,28 +76,43 @@
         }
 
         .music-player {
-            background: #ffffff;
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 1.8rem;
             padding: 1rem 1.2rem 1.2rem;
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
-            border: 1px solid #ffe3d0;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(210, 180, 255, 0.4);
+        }
+
+        .track-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .track-title {
             font-weight: 500;
-            font-size: 0.9rem;
-            color: #b35f2e;
-            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: #e2c6ff;
             letter-spacing: 1px;
-            margin-bottom: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .track-title::before {
-            content: "♪";
-            font-size: 1.1rem;
+            content: "🎵";
+            font-size: 1rem;
+        }
+
+        .now-playing {
+            font-size: 0.7rem;
+            background: rgba(160, 120, 255, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 40px;
+            color: #f0d0ff;
         }
 
         audio {
@@ -105,17 +120,44 @@
             height: 44px;
             border-radius: 60px;
             outline: none;
+            margin-bottom: 0.8rem;
         }
 
         audio::-webkit-media-controls-panel {
-            background-color: #fcf5ed;
+            background-color: #28203e;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        .ctrl-btn {
+            background: rgba(210, 180, 255, 0.2);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            color: #eeddff;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .ctrl-btn:hover {
+            background: rgba(210, 180, 255, 0.5);
+            color: white;
+            transform: scale(0.97);
         }
 
         .footer-note {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-align: center;
-            color: #be9882;
-            margin-top: 1.6rem;
+            color: #a191c9;
+            margin-top: 1.2rem;
             letter-spacing: 0.3px;
         }
 
@@ -124,45 +166,127 @@
                 padding: 1.5rem 1.2rem 1.8rem;
             }
             h1 {
-                font-size: 1.65rem;
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <!-- 重要说明：这里显示你想要展示的文字内容，你可以自由替换 -->
-        <h1>✨ 午后 · 冥想时光</h1>
-        <div class="sub">—— 让文字与旋律一同呼吸</div>
+<div class="card">
+    <!-- 告白主题标题与副标题 -->
+    <h1>🌙 你是我整个青春里的月亮</h1>
+    <div class="sub">—— 毕业之后，山海会温柔地替我记得你</div>
 
-        <div class="text-content">
-            <p>翻看旧照片的时候，常常发现那些让人心头一动的瞬间，其实都与“慢”有关。<br>一杯温热的茶，窗边漏进来的光，耳机里循环的一首老歌。</p>
-            <p>没有什么必须赶的路，也没有什么非解决不可的难题。<br>此刻，你只需要安静地读几行字，然后闭上眼，让这段音乐带你回到最放松的角落。</p>
-            <p>生活偶尔需要这样的留白，<br>让文字和声音，一起温柔地托住你。</p>
-        </div>
-
-        <div class="music-player">
-            <div class="track-title">🎵 推荐单曲 · 放松旋律</div>
-            <!-- 音频播放器 controls属性会自动显示播放/暂停按钮和进度条 你只需修改 src 里的音乐文件链接 -->
-            <audio controls preload="metadata">
-                <!-- 请将下方 src 地址替换成你的音乐链接 -->
-                <!-- 建议使用 .mp3 .m4a 等主流格式 -->
-                <source src="颜人中 - 我只能离开.mp3" type="audio/mpeg">
-                您的浏览器不支持 audio 标签，无法播放音乐。
-            </audio>
-            <div class="footer-note">
-                🌿 点击播放按钮 · 享受此刻宁静
-            </div>
-        </div>
+    <div class="text-content">
+        <p>「这大概是最后一次，能借着风把心里的话轻轻放出来了。」</p>
+        <p>毕业典礼那天，我站在人群里远远看着你，阳光把你的发丝染成浅栗色。<br>
+        忽然意识到，往后一千公里的距离，可能再也见不到你冲我笑的样子了。</p>
+        <p>偷偷喜欢了三年，却没勇气说一句“你好特别”。<br>
+        抽屉里那封没递出的信，夹在毕业纪念册的最后一页。<br>
+        如果以后你偶尔想起我，希望不是遗憾，而是一小段温柔的旋律。</p>
+        <p>再见啦，我悄悄放在心里很久的女孩。<br>
+        —— 愿你所行之处，皆有光。</p>
     </div>
 
-    <!-- 可选的极简 JavaScript，目前仅用于页面标题装饰效果 -->
-    <script>
-        // 极简交互，未来可扩展更多播放器功能
-        (function() {
-            // 仅用于让控制台不报错，和预留扩展入口
-            console.log("页面已加载 · 文字与音乐页面正常展示");
-        })();
-    </script>
+    <div class="music-player">
+        <div class="track-info">
+            <div class="track-title">播放列表 · 循环留念</div>
+            <div class="now-playing" id="nowPlayingLabel">♫ 正在播放：--</div>
+        </div>
+        <!-- 音频元素，由js动态控制播放列表 -->
+        <audio id="audioPlayer" controls preload="auto" style="width:100%"></audio>
+        <div class="controls">
+            <button class="ctrl-btn" id="prevBtn">⏮ 上一首</button>
+            <button class="ctrl-btn" id="nextBtn">下一首 ⏭</button>
+        </div>
+        <div class="footer-note">
+            🍃 每首曲子都会自动连播 · 就像没说出口的想念，一直循环
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===================== 多首音乐配置 =====================
+    // 请在这里添加你的音乐文件（支持 mp3 / m4a 等）
+    // 如果是本地文件，请保证音乐文件和此 html 放在同一个文件夹内
+    // 注意：文件名包含中文或空格也能正常工作，但建议用英文+数字重命名，避免奇怪错误
+    const playlist = [
+        {
+            name: "很美味 - April Encounter",
+            src: "很美味 - April Encounter.mp3"    // 你已放入文件夹的音乐
+        },
+        {
+            name: "Matryoshka - Sacred Play Secret Place",
+            src: "Matryoshka - Sacred Play Secret Place.mp3"
+        },
+        {
+            name: "颜人中 - 我只能离开",
+            src: "颜人中 - 我只能离开.mp3"
+        }
+        // 🌟 你可以继续添加更多歌曲，例如：
+        // { name: "我的第二首歌", src: "second.mp3" },
+        // { name: "第三首", src: "third.mp3" }
+    ];
+
+    // ------------- 播放器逻辑 -------------
+    let currentIndex = 0;          // 当前播放第几首 (0开始)
+    const audio = document.getElementById('audioPlayer');
+    const nowPlayingSpan = document.getElementById('nowPlayingLabel');
+
+    // 加载指定索引的歌曲
+    function loadSong(index) {
+        if (index < 0) index = playlist.length - 1;
+        if (index >= playlist.length) index = 0;
+        currentIndex = index;
+        const song = playlist[currentIndex];
+        audio.src = song.src;
+        audio.load();               // 重新加载
+        nowPlayingSpan.innerText = `♫ 正在播放：${song.name}`;
+        // 自动播放（现代浏览器允许用户交互后 autoplay，但由于之前可能没有交互，这里只加载，不强制play）
+        // 为了让体验更好，如果用户曾经点过播放，切换后自动继续播放
+        if (!audio.paused) {
+            audio.play().catch(e => console.log("自动播放被阻止，需要用户手动点播放按钮", e));
+        }
+    }
+
+    // 下一首
+    function nextSong() {
+        let newIndex = currentIndex + 1;
+        if (newIndex >= playlist.length) newIndex = 0;   // 循环
+        loadSong(newIndex);
+        // 尝试播放 (如果之前是在播放状态)
+        audio.play().catch(e => console.log("播放需用户手势"));
+    }
+
+    // 上一首
+    function prevSong() {
+        let newIndex = currentIndex - 1;
+        if (newIndex < 0) newIndex = playlist.length - 1;
+        loadSong(newIndex);
+        audio.play().catch(e => console.log("播放需用户手势"));
+    }
+
+    // 监听歌曲播放完毕，自动下一首 (实现循环列表)
+    audio.addEventListener('ended', () => {
+        nextSong();
+    });
+
+    // 绑定按钮事件
+    document.getElementById('nextBtn').addEventListener('click', nextSong);
+    document.getElementById('prevBtn').addEventListener('click', prevSong);
+
+    // 初始化加载第一首
+    loadSong(0);
+
+    // 小优化：如果用户切歌时音乐还没加载好，显示友好信息
+    audio.addEventListener('error', (e) => {
+        console.warn("音乐加载失败，请检查文件路径: ", audio.src);
+        nowPlayingSpan.innerText = `⚠️ 加载失败，尝试下一首`;
+        // 可尝试自动跳下一首
+        setTimeout(() => {
+            nextSong();
+        }, 1500);
+    });
+</script>
 </body>
 </html>
