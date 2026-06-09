@@ -224,63 +224,57 @@
 
 <script>
     // ===================== 多首音乐配置 =====================
-    // 已调换两首歌曲顺序
     const playlist = [
         {
-            name: "RADWIMPS - スパークル (movie ver.)",
-            src: "RADWIMPS - スパークル (movie ver.).mp3"
+            name: "很美味 - April Encounter",
+            src: "很美味 - April Encounter.mp3"
         },
         {
             name: "RADWIMPS - かたわれ時",
             src: "RADWIMPS - かたわれ時.mp3"
+        },
+        {
+            name: "Matryoshka - Sacred Play Secret Place",
+            src: "Matryoshka - Sacred Play Secret Place.mp3"
         }
     ];
 
     // ------------- 播放器逻辑 -------------
-    let currentIndex = 0;          // 当前播放第几首 (0开始)
+    let currentIndex = 0;
     const audio = document.getElementById('audioPlayer');
     const nowPlayingSpan = document.getElementById('nowPlayingLabel');
 
-    // 设置初始音量 40%
+    // 初始音量 40%
     audio.volume = 0.4;
 
-    // 加载指定索引的歌曲
+    // 加载指定歌曲
     function loadSong(index) {
         if (index < 0) index = playlist.length - 1;
         if (index >= playlist.length) index = 0;
         currentIndex = index;
         const song = playlist[currentIndex];
         audio.src = song.src;
-        audio.load();               // 重新加载
+        audio.load();
         nowPlayingSpan.innerText = `♫ 正在播放：${song.name}`;
-        // 自动播放（现代浏览器允许用户交互后 autoplay，但由于之前可能没有交互，这里只加载，不强制play）
-        // 为了让体验更好，如果用户曾经点过播放，切换后自动继续播放
         if (!audio.paused) {
-            audio.play().catch(e => console.log("自动播放被阻止，需要用户手动点播放按钮", e));
+            audio.play().catch(e => console.log("自动播放被阻止"));
         }
     }
 
     // 下一首
     function nextSong() {
-        let newIndex = currentIndex + 1;
-        if (newIndex >= playlist.length) newIndex = 0;   // 循环
-        loadSong(newIndex);
-        // 尝试播放 (如果之前是在播放状态)
-        audio.play().catch(e => console.log("播放需用户手势"));
+        loadSong(currentIndex + 1);
+        audio.play().catch(e => console.log("播放需手动触发"));
     }
 
     // 上一首
     function prevSong() {
-        let newIndex = currentIndex - 1;
-        if (newIndex < 0) newIndex = playlist.length - 1;
-        loadSong(newIndex);
-        audio.play().catch(e => console.log("播放需用户手势"));
+        loadSong(currentIndex - 1);
+        audio.play().catch(e => console.log("播放需手动触发"));
     }
 
-    // 监听歌曲播放完毕，自动下一首 (实现循环列表)
-    audio.addEventListener('ended', () => {
-        nextSong();
-    });
+    // 播放结束自动切下一首
+    audio.addEventListener('ended', nextSong);
 
     // 绑定按钮事件
     document.getElementById('nextBtn').addEventListener('click', nextSong);
@@ -289,14 +283,10 @@
     // 初始化加载第一首
     loadSong(0);
 
-    // 小优化：如果用户切歌时音乐还没加载好，显示友好信息
-    audio.addEventListener('error', (e) => {
-        console.warn("音乐加载失败，请检查文件路径: ", audio.src);
-        nowPlayingSpan.innerText = `⚠️ 加载失败，尝试下一首`;
-        // 可尝试自动跳下一首
-        setTimeout(() => {
-            nextSong();
-        }, 1500);
+    // 加载失败自动跳下一首
+    audio.addEventListener('error', () => {
+        nowPlayingSpan.innerText = `⚠️ 加载失败，切换下一首`;
+        setTimeout(nextSong, 1500);
     });
 </script>
 </body>
