@@ -129,7 +129,7 @@
         }
 
         .ctrl-btn:hover {
-            background: rgba210, 180, 255, 0.5);
+            background: rgba(210, 180, 255, 0.5);
             color: white;
             transform: scale(0.97);
         }
@@ -242,6 +242,9 @@
     let currentIndex = 0;          // 当前播放第几首 (0开始)
     const audio = document.getElementById('audioPlayer');
     const nowPlayingSpan = document.getElementById('nowPlayingLabel');
+
+    // 设置初始音量 40%
+    audio.volume = 0.4;
 
     // 加载指定索引的歌曲
     function loadSong(index) {
